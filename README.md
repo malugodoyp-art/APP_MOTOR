@@ -1,16 +1,46 @@
-# React + Vite
+# App Motor - Recurso Didáctico Interactivo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta es una aplicación web/móvil desarrollada con React y Vite. Fue creada como un recurso didáctico interactivo para la enseñanza de las piezas móviles del motor de combustión interna de cuatro tiempos.
 
-Currently, two official plugins are available:
+## Objetivo
+El objetivo principal de esta aplicación es mejorar el proceso de aprendizaje de los estudiantes de mecánica automotriz del **Instituto Superior Tecnológico "Alberto Enríquez"**, mediante una herramienta digital interactiva, accesible y efectiva.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Características
+* **Explorador de Piezas**: Información detallada sobre las diferentes piezas móviles del motor.
+* **Tiempos del Motor**: Explicación interactiva de los cuatro tiempos del motor de combustión interna (Admisión, Compresión, Combustión/Explosión, Escape).
+* **Evaluación (Quiz)**: Módulo de pruebas para evaluar los conocimientos adquiridos por los estudiantes de manera lúdica.
+* **Diseño Responsivo**: Interfaz diseñada pensando primero en dispositivos móviles (Mobile-first) para facilitar el acceso de los estudiantes.
 
-## React Compiler
+## Tecnologías Utilizadas
+* [React](https://reactjs.org/) - Librería de JavaScript para construir interfaces de usuario.
+* [Vite](https://vitejs.dev/) - Entorno de desarrollo rápido.
+* **CSS Vanilla** - Estilizado personalizado para mantener el control y el rendimiento.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Instalación y Uso Local
 
-## Expanding the ESLint configuration
+Para ejecutar este proyecto localmente en tu computadora, sigue estos pasos:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/malugodoyp-art/APP_MOTOR.git
+   ```
+
+2. Navega al directorio del proyecto:
+   ```bash
+   cd APP_MOTOR
+   ```
+
+3. Instala las dependencias necesarias:
+   ```bash
+   npm install
+   ```
+
+4. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+5. Abre tu navegador web en la URL que se muestra en la terminal (generalmente `http://localhost:5173`).
+
+## Institución
+Instituto Superior Tecnológico "Alberto Enríquez".
