@@ -1,90 +1,272 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, Play, Pause, RotateCcw } from 'lucide-react';
+import { engineCycle } from '../data/engineCycle';
 import './Strokes.css';
 
-const strokesData = [
-  {
-    id: 1,
-    title: '1. Admisión',
-    description: 'El pistón desciende dentro del cilindro. La válvula de admisión se abre para permitir el ingreso de la mezcla de aire y combustible.',
-    color: '#3b82f6', // Blue
-    animation: 'intake-anim'
-  },
-  {
-    id: 2,
-    title: '2. Compresión',
-    description: 'Las válvulas se cierran. El pistón sube, comprimiendo fuertemente la mezcla de aire y combustible en la cámara de combustión.',
-    color: '#8b5cf6', // Purple
-    animation: 'compression-anim'
-  },
-  {
-    id: 3,
-    title: '3. Explosión',
-    description: 'La bujía genera una chispa que enciende la mezcla comprimida. La explosión hace descender el pistón violentamente hacia el punto muerto inferior.',
-    color: '#ef4444', // Red/Orange
-    animation: 'power-anim'
-  },
-  {
-    id: 4,
-    title: '4. Escape',
-    description: 'La válvula de escape se abre. El pistón sube de nuevo, empujando los gases residuales de la combustión hacia el exterior.',
-    color: '#64748b', // Slate/Gray
-    animation: 'exhaust-anim'
-  }
-];
-
 const Strokes = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [currentPhase, setCurrentPhase] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
+  const [cycleProgress, setCycleProgress] = useState(0);
 
-  const nextStep = () => {
-    setActiveStep((prev) => (prev + 1) % strokesData.length);
+  const phase = engineCycle[currentPhase];
+
+  // Auto-play del ciclo
+  useEffect(() => {
+    let interval;
+    if (isAutoPlay) {
+      interval = setInterval(() => {
+        setCurrentPhase((prev) => (prev + 1) % engineCycle.length);
+      }, 4000); // Cambiar de fase cada 4 segundos
+    }
+    return () => clearInterval(interval);
+  }, [isAutoPlay]);
+
+  // Actualizar progreso del ciclo
+  useEffect(() => {
+    setCycleProgress((currentPhase + 1) * 25); // 25% por cada fase
+  }, [currentPhase]);
+
+  const handleNext = () => {
+    setCurrentPhase((prev) => (prev + 1) % engineCycle.length);
+    setIsAutoPlay(false);
   };
 
-  const currentStroke = strokesData[activeStep];
+  const handlePrevious = () => {
+    setCurrentPhase((prev) => (prev - 1 + engineCycle.length) % engineCycle.length);
+    setIsAutoPlay(false);
+  };
+
+  const handleReset = () => {
+    setCurrentPhase(0);
+    setIsAutoPlay(false);
+  };
 
   return (
-    <div className="page-container animate-fade-in">
-      <h2 className="page-title">Los 4 <span className="text-gradient">Tiempos</span></h2>
-      <p className="page-desc">Interactúa para aprender cada fase del motor.</p>
-
-      <div className="stroke-visualizer glass-panel">
-        <div 
-          className="stroke-indicator glow-effect" 
-          style={{ '--glow-color': currentStroke.color, backgroundColor: `${currentStroke.color}20`, border: `2px solid ${currentStroke.color}` }}
-        >
-          <div className="engine-animation-mock">
-            {/* Simple CSS shape for piston representation */}
-            <div className={`piston ${currentStroke.animation}`}>
-               <div className="piston-head"></div>
-               <div className="piston-rod"></div>
-            </div>
-            {activeStep === 2 && <div className="spark-explosion">💥</div>}
-            {activeStep === 0 && <div className="gas-intake">💨</div>}
-            {activeStep === 3 && <div className="gas-exhaust">💨</div>}
-          </div>
+    <div className="page-container">
+      {/* Header */}
+      <header className="strokes-header fade-in">
+        <div className="badge">
+          <RotateCcw size={14} />
+          <span>Ciclo del Motor</span>
         </div>
-        
-        <div className="stroke-controls">
-          {strokesData.map((stroke, index) => (
-            <button
-              key={stroke.id}
-              className={`step-btn ${activeStep === index ? 'active' : ''}`}
-              style={{ backgroundColor: activeStep === index ? stroke.color : '' }}
-              onClick={() => setActiveStep(index)}
+        <h1 className="strokes-title">
+          <span className="title-main">4 Tiempos</span>
+          <span className="title-subtitle">del Motor</span>
+        </h1>
+        <p className="strokes-subtitle">
+          Aprende cómo funciona el ciclo completo de un motor de gasolina de 4 tiempos
+        </p>
+      </header>
+
+      {/* Progress Bar */}
+      <div className="cycle-progress-section slide-in-up">
+        <div className="progress-label">Progreso del Ciclo</div>
+        <div className="progress-bar-wrapper">
+          <div className="progress-bar-background">
+            <div
+              className="progress-bar-fill"
+              style={{ width: `${cycleProgress}%` }}
+            />
+          </div>
+          <div className="progress-percentage">{cycleProgress}%</div>
+        </div>
+        <div className="phase-indicators">
+          {engineCycle.map((p, idx) => (
+            <div
+              key={p.id}
+              className={`phase-indicator ${idx === currentPhase ? 'active' : ''} ${idx < currentPhase ? 'completed' : ''}`}
+              onClick={() => {
+                setCurrentPhase(idx);
+                setIsAutoPlay(false);
+              }}
+              title={`${p.number}. ${p.name}`}
             >
-              {index + 1}
-            </button>
+              <span>{p.number}</span>
+            </div>
           ))}
         </div>
+      </div>
 
-        <div className="stroke-info glass-card">
-          <h3 style={{ color: currentStroke.color }}>{currentStroke.title}</h3>
-          <p>{currentStroke.description}</p>
+      {/* Main Cycle Display */}
+      <div className="strokes-main-section">
+        {/* Visualización del ciclo */}
+        <div className="cycle-visualization slide-in-left">
+          <div className="cycle-container">
+            {/* Animación del pistón */}
+            <div className="piston-animation-wrapper">
+              <div className={`piston-animation ${phase.number === 1 || phase.number === 4 ? 'moving' : ''}`}>
+                {/* Cilindro */}
+                <div className="cylinder">
+                  <div className="cylinder-wall-left" />
+                  <div className="cylinder-chamber">
+                    {/* Pistón */}
+                    <div className={`piston ${phase.number === 1 ? 'piston-down' : phase.number === 2 || phase.number === 3 ? 'piston-middle' : 'piston-up'}`}>
+                      <div className="piston-head" />
+                      <div className="piston-rod" />
+                    </div>
+
+                    {/* Indicadores de válvulas */}
+                    <div className="valve-indicators">
+                      <div className={`valve intake-valve ${phase.number === 1 ? 'open' : 'closed'}`} title="Válvula de Admisión">
+                        <div className="valve-icon">↓</div>
+                      </div>
+                      <div className={`valve exhaust-valve ${phase.number === 4 ? 'open' : 'closed'}`} title="Válvula de Escape">
+                        <div className="valve-icon">↑</div>
+                      </div>
+                    </div>
+
+                    {/* Indicador de chispa en fase de combustión */}
+                    {phase.number === 3 && (
+                      <div className="spark-indicator">
+                        <div className="spark" />
+                      </div>
+                    )}
+
+                    {/* Temperatura y Presión */}
+                    <div className="engine-readings">
+                      <div className="reading">
+                        <span className="label">Temp</span>
+                        <span className="value">{phase.temperature}</span>
+                      </div>
+                      <div className="reading">
+                        <span className="label">Pres</span>
+                        <span className="value">{phase.pressure}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="cylinder-wall-right" />
+                </div>
+
+                {/* Cigüeñal */}
+                <div className={`crankshaft ${isAutoPlay ? 'rotating' : ''}`}>
+                  <div className="crankshaft-base" />
+                </div>
+              </div>
+            </div>
+
+            {/* Información de la fase */}
+            <div className="phase-info-box slide-in-right">
+              <div className="phase-header" style={{ borderColor: phase.color }}>
+                <h2 className="phase-name">{phase.number}. {phase.name}</h2>
+                <div className="phase-indicator-dot" style={{ backgroundColor: phase.color }} />
+              </div>
+
+              <div className="phase-description">
+                <p>{phase.description}</p>
+              </div>
+
+              <div className="phase-details">
+                {/* Key Points */}
+                <div className="detail-section">
+                  <h3 className="detail-title">📌 Puntos Clave</h3>
+                  <ul className="key-points-list">
+                    {phase.keyPoints.map((point, idx) => (
+                      <li key={idx} className="key-point">
+                        <span className="point-bullet">•</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Affected Parts */}
+                <div className="detail-section">
+                  <h3 className="detail-title">⚙️ Partes Afectadas</h3>
+                  <div className="parts-list">
+                    {phase.affectedParts.map((part, idx) => (
+                      <span key={idx} className="part-badge">{part}</span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Extended Description */}
+                <div className="detail-section">
+                  <h3 className="detail-title">📖 Descripción Detallada</h3>
+                  <p className="extended-description">
+                    {phase.detailedDescription}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <button className="btn-primary mt-4" onClick={nextStep} style={{ background: currentStroke.color, boxShadow: `0 4px 15px ${currentStroke.color}40` }}>
-          Siguiente Fase
-        </button>
+        {/* Controls */}
+        <div className="strokes-controls slide-in-up">
+          <button
+            className="control-btn prev-btn"
+            onClick={handlePrevious}
+            title="Fase anterior"
+          >
+            <ChevronLeft size={20} />
+            <span>Anterior</span>
+          </button>
+
+          <button
+            className={`control-btn play-btn ${isAutoPlay ? 'playing' : ''}`}
+            onClick={() => setIsAutoPlay(!isAutoPlay)}
+            title={isAutoPlay ? 'Pausar' : 'Reproducir'}
+          >
+            {isAutoPlay ? <Pause size={20} /> : <Play size={20} />}
+            <span>{isAutoPlay ? 'Pausar' : 'Reproducir'}</span>
+          </button>
+
+          <button
+            className="control-btn reset-btn"
+            onClick={handleReset}
+            title="Reiniciar ciclo"
+          >
+            <RotateCcw size={20} />
+            <span>Reiniciar</span>
+          </button>
+
+          <button
+            className="control-btn next-btn"
+            onClick={handleNext}
+            title="Siguiente fase"
+          >
+            <span>Siguiente</span>
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </div>
+
+      {/* Educational Info */}
+      <section className="educational-info-section">
+        <div className="info-grid">
+          <div className="info-card">
+            <div className="info-icon">🔄</div>
+            <h3 className="info-title">Un Ciclo Completo</h3>
+            <p className="info-text">
+              El ciclo de 4 tiempos requiere 2 revoluciones completas del cigüeñal (720°) para completarse.
+            </p>
+          </div>
+
+          <div className="info-card">
+            <div className="info-icon">💪</div>
+            <h3 className="info-title">Solo Combustión Genera Potencia</h3>
+            <p className="info-text">
+              Solo en el 3er tiempo (combustión) se genera energía. Los otros tiempos consumen energía del volante.
+            </p>
+          </div>
+
+          <div className="info-card">
+            <div className="info-icon">🌡️</div>
+            <h3 className="info-title">Extremos de Temperatura</h3>
+            <p className="info-text">
+              La temperatura varía de 40°C en admisión hasta 2,500°C en combustión.
+            </p>
+          </div>
+
+          <div className="info-card">
+            <div className="info-icon">⚡</div>
+            <h3 className="info-title">Presión Variable</h3>
+            <p className="info-text">
+              La presión aumenta de 0.5 bar en admisión a 60 bar en combustión, luego vuelve a bajar.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

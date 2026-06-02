@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
+/* Importar estilos de componentes */
+@import './styles/components.css';
+@import './styles/responsive.css';
+
 :root {
   --bg-dark: #0b0f19;
   --bg-darker: #05080f;
