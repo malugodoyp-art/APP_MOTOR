@@ -378,28 +378,28 @@ Cada card mostrará:
 
 ```css
 /* Colores Principales */
---primary-color: #0066CC;          /* Azul principal */
---primary-light: #0088FF;          /* Azul claro */
---primary-dark: #004499;           /* Azul oscuro */
+--primary-color: #AEC6CF;          /* Azul pastel */
+--primary-light: #CDE0E7;          /* Azul pastel claro */
+--primary-dark: #8EAEBD;           /* Azul pastel oscuro */
 
 /* Fondos */
---background-dark: #050A15;        /* Casi negro con azul */
---background-darker: #0A1428;      /* Más oscuro */
---background-darkest: #001a4d;     /* Muy oscuro */
+--background-dark: #FDFDFD;        /* Blanco/Gris muy claro pastel */
+--background-darker: #F4F7FB;      /* Gris azulado pastel */
+--background-darkest: #EBF0F5;     /* Gris pastel suave */
 
 /* Texto */
---text-light: #C5D3E8;             /* Texto principal */
---text-muted: #8A9AB8;             /* Texto secundario */
+--text-light: #2D3748;             /* Texto principal oscuro para fondo claro */
+--text-muted: #718096;             /* Texto secundario medio */
 
 /* Bordes y Sombras */
---border-color: #1a2d4d;
---shadow-md: 0 4px 15px rgba(0, 0, 0, 0.3);
+--border-color: #E2E8F0;
+--shadow-md: 0 4px 15px rgba(0, 0, 0, 0.05);
 
 /* Colores de Fases */
---phase-intake: #00AA00;           /* Verde */
---phase-compression: #CCAA00;      /* Naranja */
---phase-combustion: #FF4400;       /* Rojo */
---phase-exhaust: #808080;          /* Gris */
+--phase-intake: #B7E4C7;           /* Verde pastel */
+--phase-compression: #FFDFBA;      /* Naranja pastel */
+--phase-combustion: #FFB3BA;       /* Rojo pastel */
+--phase-exhaust: #E2E8F0;          /* Gris pastel */
 ```
 
 ### 5.2 Colores por Sección de Navegación

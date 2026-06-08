@@ -9,42 +9,42 @@ export const motorCategories = [
     name: "Pistón",
     icon: "Piston",
     description: "Recibe la fuerza de combustión",
-    color: "#0066CC"
+    color: "#AEC6CF"
   },
   {
     id: 2,
     name: "Biela",
     icon: "Link",
     description: "Conecta pistón con cigüeñal",
-    color: "#0066CC"
+    color: "#AEC6CF"
   },
   {
     id: 3,
     name: "Cigüeñal",
     icon: "Zap",
     description: "Convierte movimiento lineal en rotativo",
-    color: "#0066CC"
+    color: "#AEC6CF"
   },
   {
     id: 4,
     name: "Bloque de Cilindros",
     icon: "Box",
     description: "Estructura principal del motor",
-    color: "#0066CC"
+    color: "#AEC6CF"
   },
   {
     id: 5,
     name: "Culata",
     icon: "Layers",
     description: "Tapa superior del cilindro",
-    color: "#0066CC"
+    color: "#AEC6CF"
   },
   {
     id: 6,
     name: "Árbol de Levas",
     icon: "Zap",
     description: "Controla apertura de válvulas",
-    color: "#0066CC"
+    color: "#AEC6CF"
   }
 ];
 

@@ -27,7 +27,7 @@ export const engineCycle = [
     ],
     temperature: "~40°C",
     pressure: "~0.5 bar",
-    color: "#00AA00" // Verde
+    color: "#B7E4C7" // Verde pastel
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ export const engineCycle = [
     ],
     temperature: "~400-500°C",
     pressure: "~10-15 bar",
-    color: "#CCAA00" // Naranja
+    color: "#FFDFBA" // Naranja pastel
   },
   {
     id: 3,
@@ -80,7 +80,7 @@ export const engineCycle = [
     ],
     temperature: "~2000-2500°C",
     pressure: "~50-60 bar",
-    color: "#FF4400" // Rojo-Naranja
+    color: "#FFB3BA" // Rojo pastel
   },
   {
     id: 4,
@@ -108,7 +108,7 @@ export const engineCycle = [
     ],
     temperature: "~1000°C",
     pressure: "~1 bar",
-    color: "#6666FF" // Azul
+    color: "#E2E8F0" // Gris pastel
   }
 ];
 

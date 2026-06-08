@@ -4,17 +4,17 @@
  */
 
 :root {
-  --primary-color: #0066CC;
-  --primary-dark: #004499;
-  --background-dark: #001a4d;
-  --background-darker: #000d26;
-  --text-light: #FFFFFF;
-  --text-muted: #A8B8D8;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --hover-bg: rgba(255, 255, 255, 0.05);
-  --accent-green: #00FF00;
-  --accent-orange: #FF6600;
-  --accent-red: #FF0000;
+  --primary-color: #AEC6CF;
+  --primary-dark: #8EAEBD;
+  --background-dark: #FDFDFD;
+  --background-darker: #F4F7FB;
+  --text-light: #2D3748;
+  --text-muted: #718096;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --hover-bg: rgba(0, 0, 0, 0.05);
+  --accent-green: #B7E4C7;
+  --accent-orange: #FFDFBA;
+  --accent-red: #FFB3BA;
   --transition: all 0.3s ease;
 }
 
@@ -40,7 +40,7 @@
   padding: 12px 16px 12px 44px;
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  background-color: rgba(0, 20, 60, 0.6);
+  background-color: #FFFFFF;
   color: var(--text-light);
   font-size: 14px;
   transition: var(--transition);
@@ -53,8 +53,8 @@
 .search-input:focus {
   outline: none;
   border-color: var(--primary-color);
-  background-color: rgba(0, 30, 80, 0.8);
-  box-shadow: 0 0 8px rgba(0, 102, 204, 0.3);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 8px rgba(174, 198, 207, 0.5);
 }
 
 .search-clear {
@@ -99,7 +99,7 @@
 .progress-bar-background {
   flex: 1;
   height: 8px;
-  background-color: rgba(0, 102, 204, 0.2);
+  background-color: rgba(174, 198, 207, 0.3);
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -107,10 +107,10 @@
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #0066CC 0%, #00AAFF 100%);
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   border-radius: 4px;
   transition: width 0.4s ease;
-  box-shadow: 0 0 12px rgba(0, 102, 204, 0.5);
+  box-shadow: 0 0 8px rgba(174, 198, 207, 0.4);
 }
 
 .progress-percentage {
@@ -129,7 +129,7 @@
 
 /* ==================== CATALOG CARD ==================== */
 .catalog-card {
-  background: linear-gradient(135deg, rgba(0, 30, 80, 0.6) 0%, rgba(0, 50, 120, 0.4) 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 100%);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 24px;
@@ -139,13 +139,14 @@
   flex-direction: column;
   height: 100%;
   min-height: 280px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .catalog-card:hover {
-  background: linear-gradient(135deg, rgba(0, 50, 120, 0.8) 0%, rgba(0, 70, 150, 0.6) 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #EBF0F5 100%);
   border-color: var(--primary-color);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.2);
+  box-shadow: 0 8px 24px rgba(174, 198, 207, 0.3);
 }
 
 .catalog-card-header {
@@ -157,16 +158,17 @@
 .catalog-card-icon-wrapper {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #0066CC 0%, #004499 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
+  color: #FFFFFF;
 }
 
 .catalog-card-icon {
-  color: var(--text-light);
+  color: #FFFFFF;
 }
 
 .catalog-card-content {
@@ -207,7 +209,7 @@
 
 /* ==================== PART CARD ==================== */
 .part-card {
-  background: linear-gradient(135deg, rgba(0, 20, 60, 0.8) 0%, rgba(0, 30, 80, 0.5) 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FB 100%);
   border: 1px solid var(--border-color);
   border-radius: 10px;
   overflow: hidden;
@@ -216,17 +218,18 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
 
 .part-card:hover {
-  background: linear-gradient(135deg, rgba(0, 40, 100, 0.9) 0%, rgba(0, 50, 120, 0.7) 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #EBF0F5 100%);
   border-color: var(--primary-color);
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 102, 204, 0.2);
+  box-shadow: 0 8px 20px rgba(174, 198, 207, 0.3);
 }
 
 .part-card-header {
-  background: linear-gradient(135deg, rgba(0, 102, 204, 0.3) 0%, rgba(0, 150, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(174, 198, 207, 0.2) 0%, rgba(205, 224, 231, 0.1) 100%);
   padding: 16px;
   display: flex;
   justify-content: center;
@@ -238,14 +241,14 @@
 .part-card-image-wrapper {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #0066CC 0%, #004499 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 36px;
   font-weight: bold;
-  color: var(--text-light);
+  color: #FFFFFF;
 }
 
 .part-card-image {
@@ -296,8 +299,8 @@
 .part-card-button {
   flex: 1;
   padding: 8px 12px;
-  background: linear-gradient(135deg, var(--primary-color) 0%, #0080FF 100%);
-  color: var(--text-light);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
   border: none;
   border-radius: 6px;
   font-size: 12px;
@@ -307,8 +310,8 @@
 }
 
 .part-card-button:hover {
-  background: linear-gradient(135deg, #0080FF 0%, #00AAFF 100%);
-  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+  box-shadow: 0 4px 12px rgba(174, 198, 207, 0.4);
 }
 
 .part-card-button:active {
@@ -355,13 +358,13 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #0080FF 100%);
-  color: var(--text-light);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #0080FF 0%, #00AAFF 100%);
-  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+  box-shadow: 0 4px 12px rgba(174, 198, 207, 0.4);
 }
 
 .btn-secondary {

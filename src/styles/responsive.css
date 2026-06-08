@@ -468,20 +468,19 @@
 
 /* ==================== MODO OSCURO (ya está aplicado por defecto) ==================== */
 @media (prefers-color-scheme: dark) {
-  /* Los estilos ya están diseñados para dark mode */
+  :root {
+    --background-dark: #1A202C;
+    --background-darker: #2D3748;
+    --text-light: #F7FAFC;
+    --text-muted: #A0AEC0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.05);
+  }
 }
 
 /* ==================== MODO CLARO (si el usuario lo prefiere) ==================== */
 @media (prefers-color-scheme: light) {
-  :root {
-    --primary-color: #0052A3;
-    --background-dark: #F5F5F5;
-    --background-darker: #FFFFFF;
-    --text-light: #1A1A1A;
-    --text-muted: #666666;
-    --border-color: rgba(0, 0, 0, 0.1);
-    --hover-bg: rgba(0, 0, 0, 0.05);
-  }
+  /* Ahora el modo claro es el valor por defecto general en components.css */
 }
 
 /* ==================== ACCESIBILIDAD: CONTRASTE AUMENTADO ==================== */
